@@ -32,7 +32,6 @@ app.get('/explorers/:id', async (req, res) => {
 })
 
 // Crea un endpoint POST con el que vas a poder crear nuevos explorers.
-
 app.post('/explorers', async (req, res) => {
     const explorer = {
         name: req.body.name,
@@ -43,3 +42,19 @@ app.post('/explorers', async (req, res) => {
     await prisma.explorer.create({data:explorer});
     return res.json({message});
 })
+
+// Creando endpoint PUT, en el cual recibiras el ID del explorer a actualizar, y en el cuerpo del request los
+// campos a actualizar, para este caso solo haremos el update del campp mission
+app.put('/explorers/:id', async (req,res) => {
+    const id = parseInt(req.params.id);
+
+    await prisma.explorer.update({
+        where: {
+            id: id
+        },
+        data: {
+            mission: req.body.mission
+        }
+    })
+    return res.json({message: "Explorer actualizado correctamente"});
+});
