@@ -117,3 +117,13 @@ app.delete('/explorers2/:id', async(req,res) =>{
     await prisma.explorer2.delete({where: {id: id}});
     return res.json({message: "Explorer2 eliminado correctamente"});
 });
+
+
+// Cors
+const cors = require("cors");
+
+const corsOptions= {
+    origin: "http://localhost:8081"
+};
+
+app.use(cors(corsOptions));
