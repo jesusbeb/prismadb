@@ -22,3 +22,11 @@ app.get('/explorers', async (req, res) =>{  // localhost:3000/explorers
     const allExplorers= await prisma.explorer.findMany({});
     res.json(allExplorers)
 })
+
+// Agregando endpoint GET que regresa el explorer al enviar un ID por query params
+// localhost:3000/explorers/1
+app.get('/explorers/:id', async (req, res) => {
+    const id= req.params.id;
+    const explorer= await prisma.explorer.findUnique({where: {id: parseInt(id)}});
+    res.json(explorer);
+})
