@@ -58,3 +58,10 @@ app.put('/explorers/:id', async (req,res) => {
     })
     return res.json({message: "Explorer actualizado correctamente"});
 });
+
+// Endpoint DELETE para eliminar un explorer dado un ID por query params.
+app.delete('/explorers/:id', async(req,res) => {
+    const id= parseInt(req.params.id);
+    await prisma.explorer.delete({where: {id: id}});
+    return res.json({message: "Explorer eliminado correctamente"});
+});
