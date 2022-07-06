@@ -1,6 +1,6 @@
 const { PrismaClient } = require('@prisma/client');
 const prisma = new PrismaClient();
-
+/*
 (async function main() {
   try {
     const woopa = await prisma.explorer.upsert({
@@ -44,6 +44,39 @@ const prisma = new PrismaClient();
     });
 
     console.log('Create 3 explorers');
+  } catch(e) {
+    console.error(e);
+    process.exit(1);
+  } finally {
+    await prisma.$disconnect();
+  }
+})();
+*/
+
+
+(async function main() {
+  try {
+    const wooper = await prisma.explorer2.upsert({
+      where: {name: 'wooper'},
+      update: {},
+      create: {
+        name: 'wooper',
+        lang: 'javascript',
+        missionCommander: 'carlo'
+      },
+    });
+
+    const wooper2 = await prisma.explorer2.upsert({
+      where: {name: 'wooper 2'},
+      update: {},
+      create: {
+        name: 'wooper 2',
+        lang: 'java',
+        missionCommander: 'fer'
+      },
+    });
+
+    console.log('Create 2 explorers');
   } catch(e) {
     console.error(e);
     process.exit(1);

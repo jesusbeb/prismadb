@@ -17,6 +17,7 @@ app.listen(port,() => {
     console.log(`Listening to requests on port ${port}`);
 });
 
+
 // Agregando endpoint GET que regresa todos los explorers
 app.get('/explorers', async (req, res) =>{  // localhost:3000/explorers
     const allExplorers= await prisma.explorer.findMany({});
@@ -39,9 +40,9 @@ app.post('/explorers', async (req, res) => {
         mission: req.body.mission
     };
     const message = 'Explorer creado.';
-    await prisma.explorer.create({data:explorer});
+    await prisma.explorer.create({data: explorer});
     return res.json({message});
-})
+});
 
 // Creando endpoint PUT, en el cual recibiras el ID del explorer a actualizar, y en el cuerpo del request los
 // campos a actualizar, para este caso solo haremos el update del campp mission
